@@ -1,178 +1,190 @@
-Awesome-GPU
-=================
-
-   * [Architecture](#architecture)
-      * [Resources Management](#resources-management)
-      * [Parallelism](#parallelism)
-      * [Cache](#cache)
-      * [Memory](#memory)
-      * [White Papers](#white-papers)
-   * [Algorithms](#algorithms)
-      * [BLAS](#blas)
-      * [Stencils](#stencils)
-      * [Scans](#scans)
-   * [Applications](#applications)
-      * [Deep Learning](#deep-learning)
-   * [Tools](#tools)
-      * [Benchmarks](#benchmarks)
-      * [Models](#models)
-      * [Simulators](#simulators)
-      * [Profilers](#profilers)
-   * [Runtime](#runtime)
-      * [Scheduling](#scheduling)
-   * [Code Generation](#code-generation)
-      * [Compilers](#compilers)
-      * [Programming Models](#programming-models)
-      * [Profile Guided Optimization](#profile-guided-optimization)
-      * [Binaries](#binaries)
-
-## Architecture
-
-### Resources Management
-
-- **TECS'21**-[Reducing Energy in GPGPUs through Approximate Trivial Bypassing](https://dl.acm.org/doi/10.1145/3429440)
-- **ASPLOS'17**-[Locality-Aware CTA Clustering for Modern GPUs](http://dl.acm.org/citation.cfm?id=3037709)
-- **ASPLOS'17**-[Dynamic Resource Management for Efficient Utilization of Multitasking GPUs](http://dl.acm.org/citation.cfm?id=3037707)
-- **HPCA'17**-[Dynamic GPGPU Power Management Using Adaptive Model Predictive Control](http://ieeexplore.ieee.org/document/7920860/)
-- **ISCA'16**-[Transparent Offloading and Mapping (TOM): Enabling Programmer-Transparent Near-Data Processing in GPU Systems](http://ieeexplore.ieee.org/document/7551394/)
-
-### Parallelism
-
-- **HPCA'18**-[Accelerate GPU Concurrent Kernel Execution by Mitigating Memory Pipeline Stalls](https://ieeexplore.ieee.org/abstract/document/8327010)
-- **HPCA'17**-[Controlled Kernel Launch for Dynamic Parallelism in GPUs](http://ieeexplore.ieee.org/document/7920863/)
-- **GTC'17**-[COOPERATIVE GROUPS](http://on-demand.gputechconf.com/gtc/2017/presentation/s7622-Kyrylo-perelygin-robust-and-scalable-cuda.pdf)
-- **ISCA'16**-[LaPerm: Locality Aware Scheduler for Dynamic Parallelism on GPUs](http://ieeexplore.ieee.org/document/7551424/)
-- **ISCA'16**-[Virtual Thread Maximizing Thread-Level Parallelism beyond GPU Scheduling Limit](http://ieeexplore.ieee.org/document/7551426/)
-- **Berkeley TechRpts'16**-[Understanding Latency Hiding on GPUs](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-143.html)
-
-### Cache
-
-- **ISCA'16**-[APRES: Improving Cache Efficiency by Exploiting Load Characteristics on GPUs](http://ieeexplore.ieee.org/document/7551393/)
-- **SC'15**-[Adaptive and Transparent Cache Bypassing for GPUs](https://ieeexplore.ieee.org/document/7832791)
-
-### Memory
-
-- **ICCAD'21**-[Improving Inter-kernel Data Reuse With CTA-Page Coordination in GPGPU](https://ieeexplore.ieee.org/document/9643535)
-- **SC'21**-[In-Depth Analyses of Unified Virtual Memory System for GPU Accelerated Computing](https://dl.acm.org/doi/10.1145/3458817.3480855)
-- **IBM'20**-[Umpire: Application-Focused Management and Coordination of Complex Hierarchical Memory](https://ieeexplore.ieee.org/document/8907404)
-- **HPCA'13**-[Reducing GPU Offload Latency via Fine-Grained CPU-GPU Synchronization](https://ieeexplore.ieee.org/document/6522332)
-
-### White Papers
-
-- **NVIDIA Hopper**-[NVIDIA H100 Tensor Core GPU Architecture](https://resources.nvidia.com/en-us-tensor-core)
-- **NVIDIA Ampere**-[NVIDIA A100 Tensor Core GPU Architecture](https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/nvidia-ampere-architecture-whitepaper.pdf)
-- **NVIDIA Turing**-[NVIDIA TURING GPU ARCHITECTURE](https://www.nvidia.com/en-us/design-visualization/technologies/turing-architecture/)
-- **NVIDIA Volta**-[NVIDIA TESLA V100](http://www.nvidia.com/object/volta-architecture-whitepaper.html)
-- **NVIDIA Pascal**-[NVIDIA TESLA P100](http://www.nvidia.com/object/gpu-architecture.html)
-- **NVIDIA Kepler**-[NVIDIA’s Next Generation CUDA Compute Architecture: Kepler](https://www.nvidia.com/content/PDF/kepler/NVIDIA-Kepler-GK110-Architecture-Whitepaper.pdf)
-- **NVIDIA Fermi**-[NVIDIA’s Next Generation CUDA Compute Architecture: Fermi](https://www.nvidia.com/content/PDF/fermi_white_papers/NVIDIA_Fermi_Compute_Architecture_Whitepaper.pdf)
-- **AMD CDNA 2**-[INTRODUCING AMD CDNA 2 ARCHITECTURE](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
-- **AMD CDNA**-[INTRODUCING AMD CDNA ARCHITECTURE](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
-
-## Algorithms
-
-### BLAS
-
-- **GTC'20**-[DEVELOPING CUDA KERNELS TO PUSH TENSOR CORES TO THE ABSOLUTE LIMIT ON NVIDIA A100](https://developer.download.nvidia.com/video/gputechconf/gtc/2020/presentations/s21745-developing-cuda-kernels-to-push-tensor-cores-to-the-absolute-limit-on-nvidia-a100.pdf)
-- **IPDPS'20**-[Demystifying Tensor Cores to Optimize Half-Precision Matrix Multiply](https://ieeexplore.ieee.org/abstract/document/9139835)
-- **PPoPP'19**-[A Coordinated Tiling and Batching Framework for Efficient GEMM on GPU](https://dl.acm.org/doi/10.1145/3293883.3295734)
-- **GTC'18**-[CUTLASS: CUDA TEMPLATE LIBRARY FOR DENSE LINEAR ALGEBRA AT ALL LEVELS AND SCALES](http://on-demand.gputechconf.com/gtc/2018/presentation/s8854-cutlass-software-primitives-for-dense-linear-algebra-at-all-levels-and-scales-within-cuda.pdf)
-
-### Stencils
-
-- **CGO'20**-[AN5D: Automated Stencil Framework for High-Degree Temporal Blocking on GPUs](https://dl.acm.org/doi/10.1145/3368826.3377904)
-- **IPDPS'20**-[On Optimizing Complex Stencils on GPUs](https://ieeexplore.ieee.org/document/8820786)
-- **PPoPP'18**-[Register Optimizations for Stencils on GPUs](https://dl.acm.org/doi/abs/10.1145/3178487.3178500)
-
-### Scans
-
-- **NVResearch TechRpts'16**-[Single-pass Parallel Prefix Scan with Decoupled Look-back](https://research.nvidia.com/publication/single-pass-parallel-prefix-scan-decoupled-look-back)
-
-## Applications
-
-### Deep Learning
-
-- **PPoPP'21**-[Understanding and bridging the gaps in current GNN performance optimizations](https://dl.acm.org/doi/10.1145/3437801.3441585)
-- **SC'21**-[E.T.: re-thinking self-attention for transformer models on GPUs](https://dl.acm.org/doi/abs/10.1145/3458817.3476138)
-- **OSDI'21**-[GNNAdvisor: An Adaptive and Efficient Runtime System for GNN Acceleration on GPUs](https://www.usenix.org/system/files/osdi21-wang-yuke.pdf)
-- **SC'20**-[Sparse GPU Kernels for Deep Learning](https://arxiv.org/abs/2006.10901)
-- **PPoPP'18**-[SuperNeurons: Dynamic GPU Memory Management for Training Deep Neural Networks](https://arxiv.org/abs/1801.04380)
-- **HPCA'17**-[Towards Pervasive and User Satisfactory CNN across GPU Microarchitectures](http://ieeexplore.ieee.org/document/7920809/)
-
-## Tools
-
-### Benchmarking
-
-- **GTC'18**-[Dissecting the NVIDIA Volta GPU Architecture via Microbenchmarking](https://arxiv.org/pdf/1804.06826.pdf)
-- **ISPASS'10**-[Demystifying GPU Microarchitecture through Microbenchmarking](http://ieeexplore.ieee.org/document/5452013/)
-
-### Models
-
-- **PMBS'19**-[Instruction Roofline An insightful visual performance model for GPUs](https://ieeexplore.ieee.org/document/9059264)
-- **ECP'19**-[Performance Tuning of Scientific Codes with the Roofline Model](https://crd.lbl.gov/assets/Uploads/ECP19-Roofline-1-intro.pdf)
-- **GTC'18**-[VOLTA Architecture and performance optimization](http://on-demand.gputechconf.com/gtc/2018/presentation/s81006-volta-architecture-and-performance-optimization.pdf)
-- **Synthesis Lectures on Computer Architecture'12**-[Performance Analysis and Tuning for General Purpose Graphics Processing Units (GPGPU)](http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6812836&newsearch=true&queryText=Performance%20Analysis%20and%20Tuning%20for%20General%20Purpose%20Graphics%20Processing%20Units%2038%20.LB.GPGPU.RB.)
-- **SC'10**-[Fundamental_Optimizations](https://www.nvidia.com/content/PDF/sc_2010/CUDA_Tutorial/SC10_Fundamental_Optimizations.pdf)
-
-### Simulators
-
-- **ISPASS'10**-[Visualizing Complex Dynamics in Many-Core Accelerator Architectures](http://ieeexplore.ieee.org/document/5452029/)
-- **ISPASS'09**-[Analyzing CUDA Workloads Using a Detailed GPU Simulator](http://ieeexplore.ieee.org/abstract/document/4919648/)
-
-### Profilers
-
-- **PLDI'18**-[GPU Code Optimization using Abstract Kernel Emulation and Sensitivity Analysis](https://dl.acm.org/citation.cfm?id=3192397)
-- **CGO'18**-[CUDAAdvisor: LLVM-based runtime profiling for modern GPUs](https://dl.acm.org/citation.cfm?id=3168831)
-- **CCGRID'18**-[Exposing Hidden Performance Opportunities in High Performance GPU Applications ](https://ieeexplore.ieee.org/document/8411034)
-- **THPC'16**-[Monitoring Heterogeneous Applications with the OpenMP Tools Interface](https://link.springer.com/chapter/10.1007/978-3-319-56702-0_3)
-- **Euro-Par'15**-[Identifying Optimization Opportunities Within Kernel Execution in GPU Codes](https://link.springer.com/chapter/10.1007/978-3-319-27308-2_16)
-- **SC'13**-[Effective sampling-driven performance tools for GPU-accelerated supercomputers](https://dl.acm.org/citation.cfm?id=2503299)
-- **ISPASS'12**-[Lynx: A dynamic instrumentation system for data-parallel applications on GPGPU architectures ](https://ieeexplore.ieee.org/document/6189206)
-- **ICPP'11**-[Parallel Performance Measurement of Heterogeneous Parallel Systems with GPUs](https://dl.acm.org/citation.cfm?id=2066951)
-- [**Vampir|Score-P**](http://www.vi-hps.org/projects/score-p/)
-- [**TAU**](https://www.cs.uoregon.edu/research/tau/home.php)
-- [**PAPI**](http://icl.utk.edu/papi/)
-- [**Allinea MAP**](https://www.allinea.com/products/map/)
-- [**Open|SpeedShop**](https://openspeedshop.org/)
-- [**HPCToolkit**](http://hpctoolkit.org/)
-- [**NVIDIA Nsight Systems**](https://developer.nvidia.com/nsight-systems)
-- [**NVIDIA Nsight Compute**](https://developer.nvidia.com/nsight-compute)
-- [**SASSI**](https://github.com/NVlabs/SASSI/blob/master/doc/SASSI-Tutorial-Micro2015.pptx)
-- [**NVBit**](https://github.com/NVlabs/NVBit/releases)
-
-## Runtime
-
-### Scheduling
-
-- **PPoPP'22**-[CASE: A Compiler-Assisted SchEduling Framework for Multi-GPU Systems](https://arxiv.org/abs/2107.08538)
-- **TPDS'20**-[cCUDA: Effective Co-Scheduling of Concurrent Kernels on GPUs](https://www.computer.org/csdl/journal/td/2020/04/08853389/1dKnnndWFwY)
-
-## Code Generation
-
-### Compilers
-
-- **AMD'21**-[Generating GPU Compiler Heuristics using Reinforcement Learning](https://arxiv.org/abs/2111.12055)
-- **TACO'21**-[Domain-Specific Multi-Level IR Rewriting for GPU: The Open Earth Compiler for GPU-accelerated Climate Simulation](https://dl.acm.org/doi/10.1145/3469030)
-- **LLVM'17**-[Implementing implicit OpenMP data sharing on GPUs](https://dl.acm.org/citation.cfm?id=3148189)
-- **CGO'16**-[gpucc: An Open-Source GPGPU Compiler](http://dl.acm.org/citation.cfm?id=2854041)
-- **LLVM'16**-[Offloading Support for OpenMP in Clang and LLVM](https://dl.acm.org/citation.cfm?id=3018870)
-- **PMBS'15**-[Performance Analysis of OpenMP on a GPU using a CORAL Proxy Application](https://dl.acm.org/citation.cfm?id=2832089)
-- **LLVM'15**-[Integrating GPU Support for OpenMP Ofﬂoading Directives into Clang](https://dl.acm.org/citation.cfm?id=2833161)
-- **LLVM'14**-[Coordinating GPU Threads for OpenMP 4.0 in LLVM](https://dl.acm.org/citation.cfm?id=2688364)
-
-### Programming Models
-
-- **CGO'21**-[C-for-metal: high performance SIMD programming on intel GPUs](https://dl.acm.org/doi/abs/10.1109/CGO51591.2021.9370324)
-- **ECRTS'19**-[Novel Methodologies for Predictable CPU-To-GPU Command Offloading](https://drops.dagstuhl.de/opus/volltexte/2019/10759/)
-- **ASPLOS'14**-[Paraprox: Pattern-Based Approximation for Data Parallel Applications](https://dl.acm.org/citation.cfm?id=2541948)
-
-### Profile Guided Optimization
-
-- **Geometry and Optimization'21**-[Cooperative Profile Guided Optimizations](https://doi.org/10.1111/cgf.14382)
-- **IPDPS'13**-[Kernel Specialization for Improved Adaptability and Performance on Graphics Processing Units (GPUs)](https://ieeexplore.ieee.org/document/6569883)
-
-### Binaries
-
-- **CGO'19**-[Decoding CUDA binary](https://dl.acm.org/citation.cfm?id=3314900)
-- **ISCA'15**-[Flexible software profiling of GPU architectures](http://ieeexplore.ieee.org/document/7284065/)
-
+<div class="Box-sc-g0xbh4-0 bJMeLZ js-snippet-clipboard-copy-unpositioned" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">超棒的 GPU</font></font></h1><a id="user-content-awesome-gpu" class="anchor" aria-label="永久链接：Awesome-GPU" href="#awesome-gpu"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><a href="#architecture"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">建筑学</font></font></a>
+<ul dir="auto">
+<li><a href="#resources-management"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">资源管理</font></font></a></li>
+<li><a href="#parallelism"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">并行性</font></font></a></li>
+<li><a href="#cache"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">缓存</font></font></a></li>
+<li><a href="#memory"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">记忆</font></font></a></li>
+<li><a href="#white-papers"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">白皮书</font></font></a></li>
+</ul>
+</li>
+<li><a href="#algorithms"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">算法</font></font></a>
+<ul dir="auto">
+<li><a href="#blas"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">布拉斯</font></font></a></li>
+<li><a href="#stencils"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">模板</font></font></a></li>
+<li><a href="#scans"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">扫描</font></font></a></li>
+</ul>
+</li>
+<li><a href="#applications"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">应用</font></font></a>
+<ul dir="auto">
+<li><a href="#deep-learning"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">深度学习</font></font></a></li>
+</ul>
+</li>
+<li><a href="#tools"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">工具</font></font></a>
+<ul dir="auto">
+<li><a href="#benchmarks"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">基准</font></font></a></li>
+<li><a href="#models"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">楷模</font></font></a></li>
+<li><a href="#simulators"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">模拟器</font></font></a></li>
+<li><a href="#profilers"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分析器</font></font></a></li>
+</ul>
+</li>
+<li><a href="#runtime"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运行</font></font></a>
+<ul dir="auto">
+<li><a href="#scheduling"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">调度</font></font></a></li>
+</ul>
+</li>
+<li><a href="#code-generation"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">代码生成</font></font></a>
+<ul dir="auto">
+<li><a href="#compilers"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">编译器</font></font></a></li>
+<li><a href="#programming-models"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">编程模型</font></font></a></li>
+<li><a href="#profile-guided-optimization"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">配置文件引导优化</font></font></a></li>
+<li><a href="#binaries"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">二进制文件</font></font></a></li>
+</ul>
+</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">建筑学</font></font></h2><a id="user-content-architecture" class="anchor" aria-label="固定链接：建筑" href="#architecture"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">资源管理</font></font></h3><a id="user-content-resources-management" class="anchor" aria-label="永久链接：资源管理" href="#resources-management"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">TECS'21</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://dl.acm.org/doi/10.1145/3429440" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过近似简单旁路降低 GPGPU 中的能耗</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ASPLOS'17</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="http://dl.acm.org/citation.cfm?id=3037709" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">适用于现代 GPU 的局部感知 CTA 聚类</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ASPLOS'17</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="http://dl.acm.org/citation.cfm?id=3037707" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">动态资源管理，高效利用多任务 GPU</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HPCA'17</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="http://ieeexplore.ieee.org/document/7920860/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用自适应模型预测控制的动态 GPGPU 电源管理</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ISCA'16</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="http://ieeexplore.ieee.org/document/7551394/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">透明卸载和映射 (TOM)：在 GPU 系统中实现程序员透明的近数据处理</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">并行性</font></font></h3><a id="user-content-parallelism" class="anchor" aria-label="永久链接：并行性" href="#parallelism"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HPCA'18</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://ieeexplore.ieee.org/abstract/document/8327010" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过缓解内存管道停顿来加速 GPU 并发内核执行</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HPCA'17</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="http://ieeexplore.ieee.org/document/7920863/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GPU 中动态并行的受控内核启动</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GTC'17</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="http://on-demand.gputechconf.com/gtc/2017/presentation/s7622-Kyrylo-perelygin-robust-and-scalable-cuda.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">合作团体</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ISCA'16</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="http://ieeexplore.ieee.org/document/7551424/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LaPerm：用于 GPU 动态并行的局部感知调度程序</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ISCA'16</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="http://ieeexplore.ieee.org/document/7551426/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">虚拟线程最大化线程级并行性，超越 GPU 调度限制</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">伯克利技术报告 2016</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-143.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">了解 GPU 上的延迟隐藏</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">缓存</font></font></h3><a id="user-content-cache" class="anchor" aria-label="永久链接：缓存" href="#cache"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ISCA'16</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="http://ieeexplore.ieee.org/document/7551393/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">APRES：利用 GPU 上的负载特性提高缓存效率</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SC'15</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://ieeexplore.ieee.org/document/7832791" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GPU 的自适应透明缓存旁路</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">记忆</font></font></h3><a id="user-content-memory" class="anchor" aria-label="永久链接：记忆" href="#memory"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ICCAD'21</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://ieeexplore.ieee.org/document/9643535" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">利用 GPGPU 中的 CTA 页面协调提高内核间数据重用</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SC'21</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://dl.acm.org/doi/10.1145/3458817.3480855" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GPU 加速计算统一虚拟内存系统的深入分析</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">IBM'20</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://ieeexplore.ieee.org/document/8907404" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">裁判：以应用为中心的复杂分层内存管理和协调</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HPCA'13</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://ieeexplore.ieee.org/document/6522332" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过细粒度 CPU-GPU 同步减少 GPU 卸载延迟</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">白皮书</font></font></h3><a id="user-content-white-papers" class="anchor" aria-label="永久链接：白皮书" href="#white-papers"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA Hopper</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://resources.nvidia.com/en-us-tensor-core" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA H100 Tensor Core GPU 架构</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA Ampere</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/nvidia-ampere-architecture-whitepaper.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA A100 Tensor Core GPU 架构</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA Turing</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://www.nvidia.com/en-us/design-visualization/technologies/turing-architecture/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA TURING GPU 架构</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA Volta</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="http://www.nvidia.com/object/volta-architecture-whitepaper.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA TESLA V100</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA Pascal</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="http://www.nvidia.com/object/gpu-architecture.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA TESLA P100</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA Kepler</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://www.nvidia.com/content/PDF/kepler/NVIDIA-Kepler-GK110-Architecture-Whitepaper.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA 的下一代 CUDA 计算架构：Kepler</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA Fermi</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://www.nvidia.com/content/PDF/fermi_white_papers/NVIDIA_Fermi_Compute_Architecture_Whitepaper.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA 的下一代 CUDA 计算架构：Fermi</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">AMD CDNA 2</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">介绍 AMD CDNA 2 架构</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">AMD CDNA</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">介绍 AMD CDNA 架构</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">算法</font></font></h2><a id="user-content-algorithms" class="anchor" aria-label="永久链接：算法" href="#algorithms"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">布拉斯</font></font></h3><a id="user-content-blas" class="anchor" aria-label="固定链接：BLAS" href="#blas"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GTC'20</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://developer.download.nvidia.com/video/gputechconf/gtc/2020/presentations/s21745-developing-cuda-kernels-to-push-tensor-cores-to-the-absolute-limit-on-nvidia-a100.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开发 CUDA 内核以将 NVIDIA A100 上的 TENSOR 核心推至绝对极限</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">IPDPS'20</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://ieeexplore.ieee.org/abstract/document/9139835" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">揭秘张量核以优化半精度矩阵乘法</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PPoPP'19</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://dl.acm.org/doi/10.1145/3293883.3295734" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用于在 GPU 上实现高效 GEMM 的协调平铺和批处理框架</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GTC'18</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="http://on-demand.gputechconf.com/gtc/2018/presentation/s8854-cutlass-software-primitives-for-dense-linear-algebra-at-all-levels-and-scales-within-cuda.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CUTLASS：适用于所有级别和规模的密集线性代数的 CUDA 模板库</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">模板</font></font></h3><a id="user-content-stencils" class="anchor" aria-label="固定链接：模板" href="#stencils"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CGO'20</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://dl.acm.org/doi/10.1145/3368826.3377904" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">AN5D：用于 GPU 上高阶时间阻塞的自动模板框架</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">IPDPS'20</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://ieeexplore.ieee.org/document/8820786" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">关于在 GPU 上优化复杂模板</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PPoPP'18</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://dl.acm.org/doi/abs/10.1145/3178487.3178500" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GPU 上的模板寄存器优化</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">扫描</font></font></h3><a id="user-content-scans" class="anchor" aria-label="永久链接：扫描" href="#scans"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVResearch TechRpts'16</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://research.nvidia.com/publication/single-pass-parallel-prefix-scan-decoupled-look-back" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">带解耦回顾的单次并行前缀扫描</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">应用</font></font></h2><a id="user-content-applications" class="anchor" aria-label="固定链接：应用程序" href="#applications"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">深度学习</font></font></h3><a id="user-content-deep-learning" class="anchor" aria-label="永久链接：深度学习" href="#deep-learning"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PPoPP'21——</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">理解并</font></font><a href="https://dl.acm.org/doi/10.1145/3437801.3441585" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">弥合当前 GNN 性能优化中的差距</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SC'21</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://dl.acm.org/doi/abs/10.1145/3458817.3476138" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ET：重新思考 GPU 上 Transformer 模型的自注意力机制</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OSDI'21</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://www.usenix.org/system/files/osdi21-wang-yuke.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GNNAdvisor：用于 GPU 上 GNN 加速的自适应高效运行时系统</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SC'20</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://arxiv.org/abs/2006.10901" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用于深度学习的稀疏 GPU 内核</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PPoPP'18</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://arxiv.org/abs/1801.04380" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SuperNeurons：用于训练深度神经网络的动态 GPU 内存管理</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HPCA'17</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="http://ieeexplore.ieee.org/document/7920809/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">迈向跨 GPU 微架构的普及和用户满意的 CNN</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">工具</font></font></h2><a id="user-content-tools" class="anchor" aria-label="固定链接：工具" href="#tools"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">基准测试</font></font></h3><a id="user-content-benchmarking" class="anchor" aria-label="永久链接：基准测试" href="#benchmarking"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GTC'18</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://arxiv.org/pdf/1804.06826.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过微基准测试剖析 NVIDIA Volta GPU 架构</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ISPASS'10</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="http://ieeexplore.ieee.org/document/5452013/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过微基准测试揭开 GPU 微架构的神秘面纱</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">楷模</font></font></h3><a id="user-content-models" class="anchor" aria-label="固定链接：模型" href="#models"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PMBS'19</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://ieeexplore.ieee.org/document/9059264" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">指令 Roofline 针对 GPU 的富有洞察力的视觉性能模型</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ECP'19</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://crd.lbl.gov/assets/Uploads/ECP19-Roofline-1-intro.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用 Roofline 模型对科学代码进行性能调整</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GTC'18</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> —— </font></font><a href="http://on-demand.gputechconf.com/gtc/2018/presentation/s81006-volta-architecture-and-performance-optimization.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">VOLTA架构与性能优化</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">计算机体系结构综合讲座'12</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6812836&amp;newsearch=true&amp;queryText=Performance%20Analysis%20and%20Tuning%20for%20General%20Purpose%20Graphics%20Processing%20Units%2038%20.LB.GPGPU.RB." rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通用图形处理单元 (GPGPU) 的性能分析与调优</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SC'10</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://www.nvidia.com/content/PDF/sc_2010/CUDA_Tutorial/SC10_Fundamental_Optimizations.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">基本优化</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">模拟器</font></font></h3><a id="user-content-simulators" class="anchor" aria-label="永久链接：模拟器" href="#simulators"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ISPASS'10</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="http://ieeexplore.ieee.org/document/5452029/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">多核加速器架构中的复杂动态可视化</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ISPASS'09</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="http://ieeexplore.ieee.org/abstract/document/4919648/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用详细的 GPU 模拟器分析 CUDA 工作负载</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分析器</font></font></h3><a id="user-content-profilers" class="anchor" aria-label="永久链接：分析器" href="#profilers"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PLDI'18</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://dl.acm.org/citation.cfm?id=3192397" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用抽象内核模拟和敏感性分析进行 GPU 代码优化</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CGO'18</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://dl.acm.org/citation.cfm?id=3168831" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CUDAAdvisor：基于 LLVM 的现代 GPU 运行时分析</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CCGRID'18</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://ieeexplore.ieee.org/document/8411034" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">揭示高性能 GPU 应用程序中隐藏的性能机会</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">THPC'1&ZeroWidthSpace;&ZeroWidthSpace;6</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://link.springer.com/chapter/10.1007/978-3-319-56702-0_3" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用 OpenMP 工具接口监控异构应用程序</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Euro-Par'15</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://link.springer.com/chapter/10.1007/978-3-319-27308-2_16" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">识别 GPU 代码中内核执行的优化机会</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SC'13</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://dl.acm.org/citation.cfm?id=2503299" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">适用于 GPU 加速超级计算机的有效采样驱动性能工具</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ISPASS'12</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://ieeexplore.ieee.org/document/6189206" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lynx：用于 GPGPU 架构上数据并行应用程序的动态检测系统</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ICPP'11</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://dl.acm.org/citation.cfm?id=2066951" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">基于 GPU 的异构并行系统的并行性能测量</font></font></a></li>
+<li><a href="http://www.vi-hps.org/projects/score-p/" rel="nofollow"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">吸血鬼|Score-P</font></font></strong></a></li>
+<li><a href="https://www.cs.uoregon.edu/research/tau/home.php" rel="nofollow"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">特拉维夫大学</font></font></strong></a></li>
+<li><a href="http://icl.utk.edu/papi/" rel="nofollow"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">巴基斯坦石油工业协会</font></font></strong></a></li>
+<li><a href="https://www.allinea.com/products/map/" rel="nofollow"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">艾琳娜地图</font></font></strong></a></li>
+<li><a href="https://openspeedshop.org/" rel="nofollow"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开放|SpeedShop</font></font></strong></a></li>
+<li><a href="http://hpctoolkit.org/" rel="nofollow"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HPC工具包</font></font></strong></a></li>
+<li><a href="https://developer.nvidia.com/nsight-systems" rel="nofollow"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA Nsight 系统</font></font></strong></a></li>
+<li><a href="https://developer.nvidia.com/nsight-compute" rel="nofollow"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA Nsight 计算</font></font></strong></a></li>
+<li><a href="https://github.com/NVlabs/SASSI/blob/master/doc/SASSI-Tutorial-Micro2015.pptx"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">萨西</font></font></strong></a></li>
+<li><a href="https://github.com/NVlabs/NVBit/releases"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">比特</font></font></strong></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运行</font></font></h2><a id="user-content-runtime" class="anchor" aria-label="永久链接：运行时" href="#runtime"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">调度</font></font></h3><a id="user-content-scheduling" class="anchor" aria-label="永久链接：调度" href="#scheduling"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PPoPP'22</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://arxiv.org/abs/2107.08538" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CASE：用于多 GPU 系统的编译器辅助调度框架</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">TPDS'20</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://www.computer.org/csdl/journal/td/2020/04/08853389/1dKnnndWFwY" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cCUDA：GPU 上并发内核的有效协同调度</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">代码生成</font></font></h2><a id="user-content-code-generation" class="anchor" aria-label="永久链接：代码生成" href="#code-generation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">编译器</font></font></h3><a id="user-content-compilers" class="anchor" aria-label="永久链接：编译器" href="#compilers"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">AMD'21</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://arxiv.org/abs/2111.12055" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用强化学习生成 GPU 编译器启发式方法</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">TACO'21</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://dl.acm.org/doi/10.1145/3469030" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">针对 GPU 的领域特定多层级 IR 重写：用于 GPU 加速气候模拟的开放地球编译器</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LLVM'17</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://dl.acm.org/citation.cfm?id=3148189" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 GPU 上实现隐式 OpenMP 数据共享</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CGO'16</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="http://dl.acm.org/citation.cfm?id=2854041" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">gpucc：开源 GPGPU 编译器</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LLVM'16</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://dl.acm.org/citation.cfm?id=3018870" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">卸载 Clang 和 LLVM 中的 OpenMP 支持</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PMBS'15</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://dl.acm.org/citation.cfm?id=2832089" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用 CORAL 代理应用程序对 GPU 上的 OpenMP 进行性能分析</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LLVM'15</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://dl.acm.org/citation.cfm?id=2833161" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将 OpenMP 卸载指令的 GPU 支持集成到 Clang 中</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LLVM'14</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://dl.acm.org/citation.cfm?id=2688364" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 LLVM 中协调 OpenMP 4.0 的 GPU 线程</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">编程模型</font></font></h3><a id="user-content-programming-models" class="anchor" aria-label="永久链接：编程模型" href="#programming-models"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CGO'21</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://dl.acm.org/doi/abs/10.1109/CGO51591.2021.9370324" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">C-for-metal：英特尔 GPU 上的高性能 SIMD 编程</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ECRTS'19</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://drops.dagstuhl.de/opus/volltexte/2019/10759/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可预测的 CPU 到 GPU 命令卸载的新方法</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ASPLOS'14</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="https://dl.acm.org/citation.cfm?id=2541948" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Paraprox：基于模式的数据并行应用近似</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">配置文件引导优化</font></font></h3><a id="user-content-profile-guided-optimization" class="anchor" aria-label="永久链接：配置文件引导优化" href="#profile-guided-optimization"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">几何与优化'21</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://doi.org/10.1111/cgf.14382" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">协同轮廓引导优化</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">IPDPS'13</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://ieeexplore.ieee.org/document/6569883" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">内核专业化，提高图形处理单元 (GPU) 的适应性和性能</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">二进制文件</font></font></h3><a id="user-content-binaries" class="anchor" aria-label="永久链接：二进制" href="#binaries"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CGO'19</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -</font></font><a href="https://dl.acm.org/citation.cfm?id=3314900" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">解码 CUDA 二进制文件</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ISCA'15</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - </font></font><a href="http://ieeexplore.ieee.org/document/7284065/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GPU 架构的灵活软件分析</font></font></a></li>
+</ul>
+</article></div>
